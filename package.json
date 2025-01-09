@@ -2,7 +2,10 @@
   "name": "data-app",
   "version": "0.0.0-1",
   "description": "Simple Data App",
-  "main": "index.js",
+  "main": "index.ts",
   "author": "EtkinD <etkin.dogan@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
 }
