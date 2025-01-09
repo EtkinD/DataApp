@@ -1,4 +1,5 @@
-import express, { } from 'express';
+import express from 'express';
+import routes from './routes';
 
 const app = express();
 
@@ -19,10 +20,7 @@ export function applyMiddleWare(publicFolder?: string): void {
  * Configures the routes for the express app
  */
 export function configureRoutes(): void {
-    // TODO: temporarily added to test the server
-    app.get('/hello', (req, res) => {
-        res.send('Hello World!');
-    });
+    app.use(routes);
 }
 
 /**
