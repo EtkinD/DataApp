@@ -1,0 +1,8 @@
+{
+  "name": "data-app",
+  "version": "0.0.0-1",
+  "description": "Simple Data App",
+  "main": "index.js",
+  "author": "EtkinD <etkin.dogan@hotmail.com>",
+  "license": "MIT"
+}
