@@ -6,8 +6,8 @@
   "author": "EtkinD <etkin.dogan@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "cp envs/.env.dev .env",
-    "start": "cp envs/.env.prod .env",
+    "dev": "cp envs/.env.dev .env && nodemon index.ts",
+    "start": "cp envs/.env.prod .env && node build/index.js",
     "build": "tsc"
   },
   "devDependencies": {
