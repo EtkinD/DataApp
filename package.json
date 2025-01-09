@@ -5,6 +5,11 @@
   "main": "index.ts",
   "author": "EtkinD <etkin.dogan@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "cp envs/.env.dev .env",
+    "start": "cp envs/.env.prod .env",
+    "build": "tsc"
+  },
   "devDependencies": {
     "typescript": "^5.7.3"
   }
