@@ -10,6 +10,8 @@
     "start": "cp envs/.env.prod .env && tsc && node build/index.js",
     "build": "tsc",
     "test": "mocha --require ts-node/register test/**/*.ts",
+    "docker:db:up": "docker compose -f docker/docker-compose.only.db.yml up -d",
+    "docker:db:down": "docker compose -f docker/docker-compose.only.db.yml down",
     "docker:dev": "docker compose -f docker/docker-compose.dev.yml up --build -d",
     "docker:dev:up": "docker compose -f docker/docker-compose.dev.yml up -d",
     "docker:dev:down": "docker compose -f docker/docker-compose.dev.yml down",

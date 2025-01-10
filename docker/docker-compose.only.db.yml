@@ -1,0 +1,28 @@
+services:
+  data_app_dev_db:
+    container_name: data_app_dev_db
+    image: postgres:14
+    volumes:
+      - pgdata_dev:/var/lib/postgresql/data
+    command: -p 5432
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=data_app
+  data_app_prod_db:
+    container_name: data_app_prod_db
+    image: postgres:14
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    command: -p 5431
+    ports:
+      - "5431:5431"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=data_app
+volumes:
+  pgdata_dev:
+  pgdata_prod:
