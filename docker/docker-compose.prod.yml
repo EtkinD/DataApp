@@ -1,0 +1,26 @@
+services:
+  data_app_prod:
+    container_name: data_app_prod
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - "80:3000"
+    depends_on:
+      - data_app_prod_db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@data_app_prod_db:5431/data_app
+  data_app_prod_db:
+    container_name: data_app_prod_db
+    image: postgres:14
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    command: -p 5431
+    ports:
+      - "5431:5431"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=data_app
+volumes:
+  pgdata_prod:

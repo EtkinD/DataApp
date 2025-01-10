@@ -7,8 +7,15 @@
   "license": "MIT",
   "scripts": {
     "dev": "cp envs/.env.dev .env && nodemon index.ts",
-    "start": "cp envs/.env.prod .env && node build/index.js",
-    "build": "tsc"
+    "start": "cp envs/.env.prod .env && tsc && node build/index.js",
+    "build": "tsc",
+    "docker:dev": "docker compose -f docker/docker-compose.dev.yml up --build -d",
+    "docker:dev:up": "docker compose -f docker/docker-compose.dev.yml up -d",
+    "docker:dev:down": "docker compose -f docker/docker-compose.dev.yml down",
+    "docker:prod": "docker compose -f docker/docker-compose.prod.yml up --build -d",
+    "docker:prod:up": "docker compose -f docker/docker-compose.prod.yml up -d",
+    "docker:prod:down": "docker compose -f docker/docker-compose.prod.yml down",
+    "docker:down": "yarn docker:dev:down && yarn docker:prod:down"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
