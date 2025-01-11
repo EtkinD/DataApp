@@ -2,9 +2,22 @@
 import { config } from 'dotenv';
 config();
 
-// ========== ExpressJS Setup ==========
+// ========== Start the Server ==========
+import { connectDatabase } from './src/database';
 import { applyMiddleWare, configureRoutes, startServer } from './src/express';
 
-applyMiddleWare(process.env.STATIC_DIR);
-configureRoutes();
-startServer(Number(process.env.PORT), String(process.env.HOST));
+async function main() {
+    // ===== Database Setup =====
+    const conRes = await connectDatabase();
+    if (!conRes) {
+        console.error('Failed to connect to the database');
+        return;
+    }
+
+    // ===== ExpressJS Setup =====
+    applyMiddleWare(process.env.STATIC_DIR);
+    configureRoutes();
+    startServer(Number(process.env.PORT), String(process.env.HOST));
+}
+
+main();
