@@ -9,7 +9,7 @@
     "dev": "cp envs/.env.dev .env && nodemon index.ts",
     "start": "cp envs/.env.prod .env && tsc && node build/index.js",
     "build": "tsc",
-    "test": "mocha --require ts-node/register test/**/*.ts",
+    "test": "mocha --require ts-node/register --config .mocharc.json",
     "docker:db:up": "docker compose -f docker/docker-compose.only.db.yml up -d",
     "docker:db:down": "docker compose -f docker/docker-compose.only.db.yml down",
     "docker:dev": "docker compose -f docker/docker-compose.dev.yml up --build -d",
@@ -21,18 +21,24 @@
     "docker:down": "yarn docker:dev:down && yarn docker:prod:down"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/chai": "^5.0.1",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
+    "@types/supertest": "^6.0.2",
     "chai": "^5.1.2",
     "mocha": "^11.0.1",
     "nodemon": "^3.1.9",
+    "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
   }
 }
