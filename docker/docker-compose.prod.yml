@@ -1,3 +1,4 @@
+name: data_app_prod_compose
 services:
   data_app_prod:
     container_name: data_app_prod

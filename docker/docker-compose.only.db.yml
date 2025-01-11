@@ -1,3 +1,4 @@
+name: data_app_db_only
 services:
   data_app_dev_db:
     container_name: data_app_dev_db

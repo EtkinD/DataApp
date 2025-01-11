@@ -1,0 +1,8 @@
+.vscode/
+build/
+docker/
+node_modules/
+tmp/
+
+/.env
+/README.MD

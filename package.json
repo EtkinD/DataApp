@@ -11,14 +11,15 @@
         "build": "tsc",
         "test": "mocha --config .mocharc.json",
         "docker:db:up": "docker compose -f docker/docker-compose.only.db.yml up -d",
-        "docker:db:down": "docker compose -f docker/docker-compose.only.db.yml down",
+        "docker:db:stop": "docker compose -f docker/docker-compose.only.db.yml stop",
         "docker:dev": "docker compose -f docker/docker-compose.dev.yml up --build -d",
         "docker:dev:up": "docker compose -f docker/docker-compose.dev.yml up -d",
-        "docker:dev:down": "docker compose -f docker/docker-compose.dev.yml down",
+        "docker:dev:stop": "docker compose -f docker/docker-compose.dev.yml stop",
         "docker:prod": "docker compose -f docker/docker-compose.prod.yml up --build -d",
         "docker:prod:up": "docker compose -f docker/docker-compose.prod.yml up -d",
-        "docker:prod:down": "docker compose -f docker/docker-compose.prod.yml down",
-        "docker:down": "yarn docker:dev:down && yarn docker:prod:down"
+        "docker:prod:stop": "docker compose -f docker/docker-compose.prod.yml stop",
+        "docker:up": "yarn docker:dev:up && yarn docker:prod:up",
+        "docker:stop": "yarn docker:dev:stop && yarn docker:prod:stop"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
