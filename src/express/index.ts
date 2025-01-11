@@ -12,8 +12,7 @@ export function applyMiddleWare(publicFolder?: string): void {
     app.use(express.json());
 
     // Serve static files if the public folder is provided
-    if (publicFolder)
-        app.use(express.static(publicFolder));
+    if (publicFolder) app.use(express.static(publicFolder));
 }
 
 /**

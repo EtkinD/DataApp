@@ -1,4 +1,4 @@
-import { BaseResponse } from "./base_response";
+import { BaseResponse } from './base_response';
 
 class AuthResponse extends BaseResponse {
     token: string | null = null;
@@ -6,9 +6,9 @@ class AuthResponse extends BaseResponse {
     setToken = (token: string) => {
         this.token = token;
         return this;
-    }
+    };
 }
 
-const AuthResponseFactory = () => new AuthResponse()
+const AuthResponseFactory = () => new AuthResponse();
 
 export { AuthResponse, AuthResponseFactory };

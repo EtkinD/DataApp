@@ -4,8 +4,8 @@ import { expressApp } from '../../../../../src/express';
 import { AuthResponse } from '../../../../../src/types/response/auth';
 
 const registerTest = (testBody: any) => {
-    describe("POST", () => {
-        it("Should register a user", (done) => {
+    describe('POST', () => {
+        it('Should register a user', (done) => {
             request(expressApp)
                 .post('/api/auth/register')
                 .set('Content-Type', 'application/json')
@@ -23,7 +23,11 @@ const registerTest = (testBody: any) => {
                     assert.equal(resbody.success, true, 'Success is not true');
 
                     assert.exists(resbody.message, 'Message is not defined');
-                    assert.equal(resbody.message, 'User registered', 'Message is not correct');
+                    assert.equal(
+                        resbody.message,
+                        'User registered',
+                        'Message is not correct',
+                    );
 
                     assert.exists(resbody.token, 'Token is not defined');
                     assert.isString(resbody.token, 'Token is not a string');
@@ -33,6 +37,6 @@ const registerTest = (testBody: any) => {
                 });
         });
     });
-}
+};
 
 export default registerTest;

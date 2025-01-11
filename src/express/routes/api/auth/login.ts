@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import { LoginRequest } from "../../../../types/request/auth";
-import { AuthResponseFactory } from "../../../../types/response/auth";
-import { compare } from "../../../../util/hashing";
-import { users } from ".";
-import { generateToken } from "../../../../util/jwt";
+import { Request, Response } from 'express';
+import { users } from '.';
+import { LoginRequest } from '../../../../types/request/auth';
+import { AuthResponseFactory } from '../../../../types/response/auth';
+import { compare } from '../../../../util/hashing';
+import { generateToken } from '../../../../util/jwt';
 
 function login(req: Request, res: Response): void {
     const reqbody = req.body as LoginRequest;

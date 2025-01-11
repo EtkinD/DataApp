@@ -1,13 +1,9 @@
 // ========== Environment Setup ==========
-import { config } from "dotenv";
+import { config } from 'dotenv';
 config();
 
 // ========== ExpressJS Setup ==========
-import {
-    applyMiddleWare,
-    configureRoutes,
-    startServer
-} from "./src/express";
+import { applyMiddleWare, configureRoutes, startServer } from './src/express';
 
 applyMiddleWare(process.env.STATIC_DIR);
 configureRoutes();

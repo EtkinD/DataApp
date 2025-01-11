@@ -1,4 +1,3 @@
-
 interface RegisterRequest {
     username: string;
     name: string;
@@ -12,4 +11,4 @@ interface LoginRequest {
     password: string;
 }
 
-export { RegisterRequest, LoginRequest };
+export { LoginRequest, RegisterRequest };

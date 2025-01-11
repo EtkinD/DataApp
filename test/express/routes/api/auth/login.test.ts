@@ -4,8 +4,8 @@ import { expressApp } from '../../../../../src/express';
 import { AuthResponse } from '../../../../../src/types/response/auth';
 
 const loginTest = (testBody: any) => {
-    describe("POST", () => {
-        it("Should login a user", (done) => {
+    describe('POST', () => {
+        it('Should login a user', (done) => {
             request(expressApp)
                 .post('/api/auth/login')
                 .set('Content-Type', 'application/json')
@@ -23,7 +23,11 @@ const loginTest = (testBody: any) => {
                     assert.equal(resbody.success, true, 'Success is not true');
 
                     assert.exists(resbody.message, 'Message is not defined');
-                    assert.equal(resbody.message, 'Login successful', 'Message is not correct');
+                    assert.equal(
+                        resbody.message,
+                        'Login successful',
+                        'Message is not correct',
+                    );
 
                     assert.exists(resbody.token, 'Token is not defined');
                     assert.isString(resbody.token, 'Token is not a string');
