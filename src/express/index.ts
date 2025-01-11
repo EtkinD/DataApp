@@ -33,3 +33,5 @@ export function startServer(port: number, host: string): void {
         console.log(`[HTTP][S] Server started at http://${host}:${port}`);
     });
 }
+
+export { app as expressApp };
