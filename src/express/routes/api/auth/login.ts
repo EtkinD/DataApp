@@ -41,8 +41,8 @@ function login(req: Request, res: Response): void {
     }
 
     // Update user info
-    user.lastLogin = new Date();
-    user.lastActivity = new Date();
+    user.last_login = new Date();
+    user.last_activity = new Date();
 
     // Send response
     const r = AuthResponseFactory()

@@ -1,14 +1,9 @@
+import { randomUserEntity } from '../../../../../src/util/random';
 import loginTest from './login.test';
 import registerTest from './register.test';
 
 const authTests = () => {
-    const testBody = {
-        username: 'etkin.dogan',
-        name: 'Etkin',
-        lastName: 'Dogan',
-        email: 'etkin.dogan@hotmail.com',
-        password: '123456',
-    };
+    const testBody = randomUserEntity();
 
     describe('/register', () => registerTest(testBody));
     describe('/login', () => loginTest(testBody));

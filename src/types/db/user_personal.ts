@@ -6,6 +6,6 @@ export interface UserPersonalEntity {
     address?: string;
     city?: string;
     country?: string;
-    postalCode?: string;
-    birthDate?: Date;
+    postal_code?: string;
+    birth_date?: Date;
 }

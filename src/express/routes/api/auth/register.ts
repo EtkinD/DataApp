@@ -14,7 +14,7 @@ function register(req: Request, res: Response): void {
         !reqbody.password ||
         !reqbody.username ||
         !reqbody.name ||
-        !reqbody.lastName
+        !reqbody.last_name
     ) {
         const r = AuthResponseFactory()
             .setStatus(400)
@@ -43,9 +43,9 @@ function register(req: Request, res: Response): void {
     newUser.id = users.length + 1;
     newUser.password = hash(newUser.password);
 
-    newUser.joinDate = new Date();
-    newUser.lastLogin = new Date();
-    newUser.lastActivity = new Date();
+    newUser.join_date = new Date();
+    newUser.last_login = new Date();
+    newUser.last_activity = new Date();
 
     // Add user to the list
     users.push(newUser);

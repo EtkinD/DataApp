@@ -1,8 +1,8 @@
 export interface UserProfileEntity {
     id: number;
-    userId: number;
+    user_id: number;
 
-    profilePicture?: Array<number>;
-    coverPicture?: Array<number>;
+    profile_picture?: Array<number>;
+    cover_picture?: Array<number>;
     bio?: string;
 }

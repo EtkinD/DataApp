@@ -3,15 +3,15 @@ export interface UserEntity {
 
     username: string;
     name: string;
-    lastName: string;
+    last_name: string;
     email: string;
     password: string;
 
-    joinDate: Date;
-    lastLogin: Date;
-    lastActivity: Date;
+    join_date: Date;
+    last_login: Date;
+    last_activity: Date;
 
     // Foreign keys
-    personalId?: number;
-    profileId?: number;
+    personal_id?: number;
+    profile_id?: number;
 }

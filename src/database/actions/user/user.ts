@@ -6,13 +6,13 @@ import { UserEntity } from '../../../types/db/user';
 export const createUser = async (
     user: UserEntity,
 ): Promise<UserEntity | null> => {
-    const { username, name, lastName, email, password } = user;
+    const { username, name, last_name, email, password } = user;
     const query = `
-        INSERT INTO users (username, name, lastName, email, password)
+        INSERT INTO users (username, name, last_name, email, password)
         VALUES ($1, $2, $3, $4, $5)
         RETURNING *;
     `;
-    const values = [username, name, lastName, email, password];
+    const values = [username, name, last_name, email, password];
 
     const { rows, rowCount } = await dbClient.query(query, values);
 
@@ -78,14 +78,14 @@ export const updateUser = async (
     id: number,
     user: UserEntity,
 ): Promise<UserEntity | null> => {
-    const { username, name, lastName, email, password } = user;
+    const { username, name, last_name, email, password } = user;
     const query = `
         UPDATE users
-        SET username = $1, name = $2, lastName = $3, email = $4, password = $5
+        SET username = $1, name = $2, last_name = $3, email = $4, password = $5
         WHERE id = $6
         RETURNING *;
     `;
-    const values = [username, name, lastName, email, password, id];
+    const values = [username, name, last_name, email, password, id];
 
     const { rows, rowCount } = await dbClient.query(query, values);
 

@@ -10,16 +10,16 @@ function randomUserTest() {
                 assert.isNumber(user.id);
                 assert.isAbove(user.id, 0);
                 assert.isString(user.name);
-                assert.isString(user.lastName);
+                assert.isString(user.last_name);
                 assert.isString(user.username);
                 assert.isString(user.password);
                 assert.isTrue(compare(user.originalPassword, user.password));
                 assert.isString(user.email);
-                assert.instanceOf(user.joinDate, Date);
-                assert.instanceOf(user.lastLogin, Date);
-                assert.instanceOf(user.lastActivity, Date);
-                assert.isUndefined(user.personalId);
-                assert.isUndefined(user.profileId);
+                assert.instanceOf(user.join_date, Date);
+                assert.instanceOf(user.last_login, Date);
+                assert.instanceOf(user.last_activity, Date);
+                assert.isUndefined(user.personal_id);
+                assert.isUndefined(user.profile_id);
             }
         }).timeout(5000); // It can take a while to generate 666 random users. So, we need to increase the timeout.
     });

@@ -8,13 +8,13 @@ export function randomUserEntity(): RandUserEntity {
     const data: RandUserEntity = {
         id: Math.floor(Math.random() * 10000),
         name: `${randomWord()}`,
-        lastName: `${randomWord()}`,
+        last_name: `${randomWord()}`,
         originalPassword: `${randomWord(8, 16)}`,
-        joinDate: new Date(),
-        lastLogin: new Date(),
-        lastActivity: new Date(),
-        personalId: undefined,
-        profileId: undefined,
+        join_date: new Date(),
+        last_login: new Date(),
+        last_activity: new Date(),
+        personal_id: undefined,
+        profile_id: undefined,
     } as RandUserEntity;
 
     data.password = hash(data.originalPassword);
@@ -22,9 +22,9 @@ export function randomUserEntity(): RandUserEntity {
     data.username =
         `${data.name.toLowerCase()}` +
         `.` +
-        `${data.lastName.replace(' ', '.').toLowerCase()}`;
+        `${data.last_name.replace(' ', '.').toLowerCase()}`;
 
-    data.email = `${data.name}${data.lastName}@${data.username}.com`;
+    data.email = `${data.name}${data.last_name}@${data.username}.com`;
 
     return data;
 }
