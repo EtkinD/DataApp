@@ -5,6 +5,7 @@ services:
     image: postgres:14
     volumes:
       - pgdata_dev:/var/lib/postgresql/data
+      - ../sql:/docker-entrypoint-initdb.d
     command: -p 5432
     ports:
       - "5432:5432"
@@ -12,11 +13,13 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=data_app
+      - POSTGRES_HOST_AUTH_METHOD=trust
   data_app_prod_db:
     container_name: data_app_prod_db
     image: postgres:14
     volumes:
       - pgdata_prod:/var/lib/postgresql/data
+      - ../sql:/docker-entrypoint-initdb.d
     command: -p 5431
     ports:
       - "5431:5431"
@@ -24,6 +27,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=data_app
+      - POSTGRES_HOST_AUTH_METHOD=trust
 volumes:
   pgdata_dev:
   pgdata_prod:

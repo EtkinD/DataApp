@@ -16,6 +16,7 @@ services:
     image: postgres:14
     volumes:
       - pgdata_dev:/var/lib/postgresql/data
+      - ../sql:/docker-entrypoint-initdb.d
     command: -p 5432
     ports:
       - "5432:5432"
@@ -23,5 +24,6 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=data_app
+      - POSTGRES_HOST_AUTH_METHOD=trust
 volumes:
   pgdata_dev:
