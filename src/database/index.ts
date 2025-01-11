@@ -1,4 +1,5 @@
 import { Client } from 'pg';
+import actions from './actions';
 
 const DB_URL = process.env.DATABASE_URL || process.env.NOODE_DATABASE_URL;
 const client = new Client({
@@ -8,7 +9,7 @@ const client = new Client({
 /**
  * Connect to the database by using the url provided in the environment variables.
  */
-export async function connectDatabase(): Promise<boolean> {
+async function connectDatabase(): Promise<boolean> {
     let result: boolean;
 
     await client
@@ -25,4 +26,4 @@ export async function connectDatabase(): Promise<boolean> {
     return new Promise((resolve) => resolve(result));
 }
 
-export { client as dbClient };
+export { connectDatabase, actions as dbActions, client as dbClient };
