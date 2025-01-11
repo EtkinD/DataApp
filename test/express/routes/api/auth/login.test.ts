@@ -4,7 +4,7 @@ import { expressApp } from '../../../../../src/express';
 import { AuthResponse } from '../../../../../src/types/response/auth';
 
 const loginTest = (testBody: any) => {
-    describe("POST /login", () => {
+    describe("POST", () => {
         it("Should login a user", (done) => {
             request(expressApp)
                 .post('/api/auth/login')
@@ -32,8 +32,6 @@ const loginTest = (testBody: any) => {
                     done();
                 });
         });
-
-        // TODO: Add other tests
     });
 };
 

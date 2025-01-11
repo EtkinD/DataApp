@@ -4,7 +4,7 @@ import { expressApp } from '../../../../../src/express';
 import { AuthResponse } from '../../../../../src/types/response/auth';
 
 const registerTest = (testBody: any) => {
-    describe("POST /register", () => {
+    describe("POST", () => {
         it("Should register a user", (done) => {
             request(expressApp)
                 .post('/api/auth/register')
@@ -32,8 +32,6 @@ const registerTest = (testBody: any) => {
                     done();
                 });
         });
-
-        // TODO: Add other tests
     });
 }
 

@@ -1,20 +1,14 @@
 import { assert } from 'chai';
-import { config } from 'dotenv';
 import request from 'supertest';
-import { applyMiddleWare, configureRoutes, expressApp } from '../../src/express';
+import { expressApp } from '../../src/express';
 
 
-describe("Express /", () => {
+const staticFileTests = () => {
+    describe("/", indexTests);
+}
 
-    before(() => {
-        // Config: Environment variables
-        config({ path: './envs/.env.dev' });
-        // Config: Express
-        applyMiddleWare(process.env.STATIC_DIR);
-        configureRoutes();
-    });
-
-    describe("GET /", () => {
+const indexTests = () => {
+    describe("GET", () => {
         it("Should recieve index.html", (done) => {
             request(expressApp)
                 .get('/')
@@ -29,7 +23,7 @@ describe("Express /", () => {
         });
     });
 
-    describe("GET /index.html", () => {
+    describe("GET index.html", () => {
         it("Should recieve index.html", (done) => {
             request(expressApp)
                 .get('/index.html')
@@ -43,4 +37,7 @@ describe("Express /", () => {
                 });
         });
     });
-});
+}
+
+
+export default staticFileTests;
