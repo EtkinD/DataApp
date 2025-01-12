@@ -78,14 +78,25 @@ export const updateUser = async (
     id: number,
     user: UserEntity,
 ): Promise<UserEntity | null> => {
-    const { username, name, last_name, email, password } = user;
+    const values = [
+        user.username,
+        user.name,
+        user.last_name,
+        user.email,
+        user.password,
+        user.join_date,
+        user.last_activity,
+        user.last_login,
+        user.personal_id,
+        user.profile_id,
+        user.id,
+    ];
     const query = `
         UPDATE users
-        SET username = $1, name = $2, last_name = $3, email = $4, password = $5
-        WHERE id = $6
+        SET username = $1, name = $2, last_name = $3, email = $4, password = $5, join_date = $6, last_activity = $7, last_login = $8, personal_id = $9, profile_id = $10
+        WHERE id = $11
         RETURNING *;
     `;
-    const values = [username, name, last_name, email, password, id];
 
     const { rows, rowCount } = await dbClient.query(query, values);
 
