@@ -54,7 +54,7 @@ export const getUserByUsername = async (
 ): Promise<UserEntity | null> => {
     const query = `
         SELECT * FROM users
-        WHERE name = $1;
+        WHERE username = $1;
     `;
     const values = [username];
 
