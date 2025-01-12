@@ -2,7 +2,7 @@ import { Client } from 'pg';
 import actions from './actions';
 
 const DB_URL = process.env.DATABASE_URL || process.env.NOODE_DATABASE_URL;
-const client = new Client({
+let client: Client = new Client({
     connectionString: DB_URL,
 });
 
@@ -11,6 +11,15 @@ const client = new Client({
  */
 async function connectDatabase(): Promise<boolean> {
     let result: boolean;
+
+    // TODO (Etkin): IDK why but when I run the tests, the DB_URL is undefined. So, I need to check it here.
+    // Update here if you find a better solution.
+    if (!DB_URL) {
+        client = new Client({
+            connectionString:
+                process.env.DATABASE_URL || process.env.NOODE_DATABASE_URL,
+        });
+    }
 
     await client
         .connect()
