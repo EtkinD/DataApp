@@ -1,6 +1,9 @@
+import { readFileSync } from 'fs';
 import path from 'path';
 
 type Env = 'dev' | 'prod' | 'test';
+
+let secretKey: string | undefined;
 
 /**
  * @returns {Env} The current environment (dev, prod, test)
@@ -74,6 +77,34 @@ export function getStaticFolder(): string {
     return path.join(__dirname, '..', '..', folderName);
 }
 
+/**
+ * Reads the secret key from the file system
+ *
+ * To set the secret key, set the SECRET_KEY_PATH environment variable
+ *
+ * @returns {string} The current secret key
+ */
+export function getSecretKey(): string {
+    if (secretKey) return secretKey;
+
+    const path = process.env.SECRET_KEY_PATH;
+
+    if (!path) {
+        console.error('Secret key path not found');
+        secretKey = 'default';
+        return secretKey;
+    }
+
+    try {
+        const key = readFileSync(path, 'utf8');
+        secretKey = key;
+    } catch (err) {
+        console.error('Error reading secret key', err);
+        secretKey = 'default';
+    }
+    return secretKey;
+}
+
 export default {
     getEnv,
     isDev,
@@ -85,4 +116,5 @@ export default {
     getSocketUrl,
     getDbUrl,
     getStaticFolder,
+    getSecretKey,
 };

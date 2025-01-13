@@ -1,9 +1,11 @@
 
 node_modules/
 build/
+tmp/
+secret/*
 
 /.env
 
-tmp/
-
 .idea/
+
+!.gitkeep

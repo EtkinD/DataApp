@@ -16,6 +16,7 @@
         "url": "git+https://github.com/EtkinD/DataApp.git"
     },
     "scripts": {
+        "gen:secretkey": "mkdir secret && ssh-keygen -t rsa -b 4096 -f secret/secret_key -N \"\"",
         "dev": "cp envs/.env.dev .env && nodemon index.ts",
         "start": "cp envs/.env.prod .env && tsc && node build/index.js",
         "build": "tsc",
