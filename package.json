@@ -5,6 +5,16 @@
     "main": "index.ts",
     "author": "EtkinD <etkin.dogan@hotmail.com>",
     "license": "MIT",
+    "private": true,
+    "engines": {
+        "node": ">=16.13.0",
+        "npm": ">=8.1.0",
+        "yarn": ">=1.22.17"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/EtkinD/DataApp.git"
+    },
     "scripts": {
         "dev": "cp envs/.env.dev .env && nodemon index.ts",
         "start": "cp envs/.env.prod .env && tsc && node build/index.js",
