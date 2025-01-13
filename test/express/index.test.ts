@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { connectDatabase, dbClient } from '../../src/database';
-import { applyMiddleWare, configureRoutes } from '../../src/express';
+import { setupExpress } from '../../src/express';
 import routeTests from './routes/index.test';
 import staticFileTests from './static.test';
 
@@ -15,8 +15,7 @@ describe('Express Tests', () => {
             return new Error('Failed to connect to the database');
         }
         // Config: Express
-        applyMiddleWare();
-        configureRoutes();
+        setupExpress();
         return null;
     });
 

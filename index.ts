@@ -4,7 +4,7 @@ config();
 
 // ========== Start the Server ==========
 import { connectDatabase } from './src/database';
-import { applyMiddleWare, configureRoutes, startServer } from './src/express';
+import { setupExpress, startServer } from './src/express';
 
 async function main() {
     // ===== Database Setup =====
@@ -15,8 +15,7 @@ async function main() {
     }
 
     // ===== ExpressJS Setup =====
-    applyMiddleWare();
-    configureRoutes();
+    setupExpress();
     startServer();
 }
 

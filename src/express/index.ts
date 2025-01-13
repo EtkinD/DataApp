@@ -4,23 +4,19 @@ import routes from './routes';
 
 const app = express();
 
-// TODO (Etkin): Join applyMiddleWare and configureRoutes into a single function
 /**
- * Applies the middleware to the express app
+ * Sets up the express server
+ * with middleware, routes, static files, and error handling
  */
-export function applyMiddleWare(): void {
-    // To be able to read the body of the request
+export function setupExpress(): void {
+    // Middleware
     app.use(express.json());
-
-    // Serve static files if the public folder is provided
-    app.use(express.static(getStaticFolder()));
-}
-
-/**
- * Configures the routes for the express app
- */
-export function configureRoutes(): void {
+    // Routes
     app.use(routes);
+    // Static files
+    app.use(express.static(getStaticFolder()));
+    // Error handling
+    // TODO: Implement error handling
 }
 
 /**
