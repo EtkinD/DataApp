@@ -15,13 +15,13 @@ describe('Express Tests', () => {
             return new Error('Failed to connect to the database');
         }
         // Config: Express
-        applyMiddleWare(process.env.STATIC_DIR);
+        applyMiddleWare();
         configureRoutes();
         return null;
     });
 
     after(async () => {
-        await dbClient.end();
+        await dbClient?.end();
         return null;
     });
 

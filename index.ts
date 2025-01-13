@@ -15,9 +15,9 @@ async function main() {
     }
 
     // ===== ExpressJS Setup =====
-    applyMiddleWare(process.env.STATIC_DIR);
+    applyMiddleWare();
     configureRoutes();
-    startServer(Number(process.env.PORT), String(process.env.HOST));
+    startServer();
 }
 
 main();

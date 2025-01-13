@@ -1,38 +1,36 @@
 import { Client } from 'pg';
+import { getDbUrl } from '../util/environ';
 import actions from './actions';
 
-const DB_URL = process.env.DATABASE_URL || process.env.NOODE_DATABASE_URL;
-let client: Client = new Client({
-    connectionString: DB_URL,
-});
+let client: Client | undefined;
 
 /**
- * Connect to the database by using the url provided in the environment variables.
+ * Connect to the database using the URL provided in the environment variables.
  */
 async function connectDatabase(): Promise<boolean> {
-    let result: boolean;
-
-    // TODO (Etkin): IDK why but when I run the tests, the DB_URL is undefined. So, I need to check it here.
-    // Update here if you find a better solution.
-    if (!DB_URL) {
-        client = new Client({
-            connectionString:
-                process.env.DATABASE_URL || process.env.NOODE_DATABASE_URL,
-        });
+    if (getDbUrl() === undefined) {
+        console.error('Database URL is not defined');
+        return false;
     }
 
+    client = new Client({
+        connectionString: getDbUrl(),
+    });
+
+    let result: boolean = false;
     await client
         .connect()
         .then(() => {
-            console.log('Connected to the database');
+            console.log(`[HTTP][D] Connected to the database at ${getDbUrl()}`);
             result = true;
         })
         .catch((err) => {
-            console.error('Error connecting to the database', err);
+            console.error('[HTTP][D] Error connecting to the database', err);
+            console.error('[HTTP][D] Database URL:', getDbUrl());
             result = false;
         });
 
-    return new Promise((resolve) => resolve(result));
+    return result;
 }
 
 export { connectDatabase, actions as dbActions, client as dbClient };

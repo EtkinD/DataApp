@@ -14,6 +14,11 @@ export const createUser = async (
     `;
     const values = [username, name, last_name, email, password];
 
+    if (dbClient === undefined) {
+        console.error('Database client is not defined');
+        return null;
+    }
+
     const { rows, rowCount } = await dbClient.query(query, values);
 
     if (rowCount === 0) return null;
@@ -27,6 +32,11 @@ export const getUserById = async (id: number): Promise<UserEntity | null> => {
         WHERE id = $1;
     `;
     const values = [id];
+
+    if (dbClient === undefined) {
+        console.error('Database client is not defined');
+        return null;
+    }
 
     const { rows, rowCount } = await dbClient.query(query, values);
 
@@ -43,6 +53,11 @@ export const getUserByEmail = async (
     `;
     const values = [email];
 
+    if (dbClient === undefined) {
+        console.error('Database client is not defined');
+        return null;
+    }
+
     const { rows, rowCount } = await dbClient.query(query, values);
 
     if (rowCount === 0) return null;
@@ -58,6 +73,11 @@ export const getUserByUsername = async (
     `;
     const values = [username];
 
+    if (dbClient === undefined) {
+        console.error('Database client is not defined');
+        return null;
+    }
+
     const { rows, rowCount } = await dbClient.query(query, values);
 
     if (rowCount === 0) return null;
@@ -66,6 +86,11 @@ export const getUserByUsername = async (
 
 export const listUsers = async (): Promise<Array<UserEntity>> => {
     const query = `SELECT * FROM users;`;
+
+    if (dbClient === undefined) {
+        console.error('Database client is not defined');
+        return [];
+    }
 
     const { rows, rowCount } = await dbClient.query(query);
 
@@ -97,6 +122,11 @@ export const updateUser = async (
         WHERE id = $11
         RETURNING *;
     `;
+
+    if (dbClient === undefined) {
+        console.error('Database client is not defined');
+        return null;
+    }
 
     const { rows, rowCount } = await dbClient.query(query, values);
 

@@ -7,13 +7,11 @@ describe('Database Tests', () => {
         // Config: Environment variables
         config({ path: './envs/.env.dev' });
         // Config: Database
-        const conRes = await connectDatabase()
-            .then(() => true)
-            .catch(() => false);
+        const conRes = await connectDatabase();
         if (!conRes) throw new Error('Failed to connect to the database');
     });
 
     actionTests();
 
-    after(() => dbClient.end());
+    after(() => dbClient?.end());
 });
