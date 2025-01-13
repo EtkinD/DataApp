@@ -21,7 +21,7 @@ function randomUserTest() {
                 assert.isUndefined(user.personal_id);
                 assert.isUndefined(user.profile_id);
             }
-        }).timeout(5000); // It can take a while to generate 666 random users. So, we need to increase the timeout.
+        });
     });
 }
 

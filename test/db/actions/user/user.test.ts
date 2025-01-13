@@ -50,7 +50,7 @@ function userEntityTests() {
             });
 
             return results;
-        }).timeout(5000); // It can take a while to generate 10 random users. So, we need to increase the timeout.
+        });
 
         it('should get generated users by id', async () => {
             // TODO: Implement this test.
