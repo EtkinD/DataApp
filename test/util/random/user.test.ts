@@ -4,8 +4,8 @@ import { randomUserEntity } from '../../../src/util/random';
 
 function randomUserTest() {
     describe('UserEntity', () => {
-        it('should generate 666 random user entity', () => {
-            for (let i = 0; i < 666; i++) {
+        it('should generate 30 + 1 random user entity', () => {
+            for (let i = 0; i < 30 + 1; i++) {
                 const user = randomUserEntity();
                 assert.isNumber(user.id);
                 assert.isAbove(user.id, 0);

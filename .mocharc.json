@@ -1,7 +1,7 @@
 {
     "require": ["ts-node/register"],
     "extension": ["ts"],
-    "spec": "test/**/*.test.ts",
+    "spec": "test/index.test.ts",
     "watch-files": ["src/**/*.ts", "test/**/*.ts"],
     "watch-ignore": ["node_modules"],
     "timeout": 10000,
