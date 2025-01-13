@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { users } from '.';
+import { dbActions } from '../../../../database';
 import { LoginRequest } from '../../../../types/request/auth';
 import { AuthResponseFactory } from '../../../../types/response/auth';
 import { compare } from '../../../../util/hashing';
 import { generateToken } from '../../../../util/jwt';
 
-function login(req: Request, res: Response): void {
+async function login(req: Request, res: Response): Promise<void> {
     const reqbody = req.body as LoginRequest;
 
     if (!reqbody.username || !reqbody.password) {
@@ -18,7 +18,9 @@ function login(req: Request, res: Response): void {
         return;
     }
 
-    const user = users.find((user) => user.username === reqbody.username);
+    const user = await dbActions.userActions.user.getUserByUsername(
+        reqbody.username,
+    );
 
     if (!user) {
         const r = AuthResponseFactory()
@@ -44,13 +46,15 @@ function login(req: Request, res: Response): void {
     user.last_login = new Date();
     user.last_activity = new Date();
 
-    // Send response
-    const r = AuthResponseFactory()
-        .setStatus(200)
-        .setSuccess(true)
-        .setMessage('Login successful')
-        .setToken(generateToken(user as object));
-    res.status(200).send(r);
+    dbActions.userActions.user.updateUser(user.id, user);
+
+    res.status(200).send(
+        AuthResponseFactory()
+            .setStatus(200)
+            .setSuccess(true)
+            .setMessage('Login successful')
+            .setToken(generateToken(user as object)),
+    );
 }
 
 export default login;

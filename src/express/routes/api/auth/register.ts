@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { users } from '.';
+import { dbActions } from '../../../../database';
 import { UserEntity } from '../../../../types/db/user';
 import { RegisterRequest } from '../../../../types/request/auth';
 import { AuthResponseFactory } from '../../../../types/response/auth';
 import { hash } from '../../../../util/hashing';
 import { generateToken } from '../../../../util/jwt';
 
-function register(req: Request, res: Response): void {
+async function register(req: Request, res: Response): Promise<void> {
     const reqbody = req.body as RegisterRequest;
 
     if (
@@ -25,7 +25,7 @@ function register(req: Request, res: Response): void {
         return;
     }
 
-    const user = users.find((user) => user.username === reqbody.username);
+    const user = await dbActions.userActions.user.getUserByEmail(reqbody.email);
 
     if (user) {
         const r = AuthResponseFactory()
@@ -37,20 +37,23 @@ function register(req: Request, res: Response): void {
         return;
     }
 
-    // Create new user
-    const newUser = reqbody as UserEntity;
-    // Set user info
-    newUser.id = users.length + 1;
-    newUser.password = hash(newUser.password);
+    // Hash password
+    reqbody.password = hash(reqbody.password);
+    // Create user in database
+    const newUser = await dbActions.userActions.user.createUser(
+        reqbody as UserEntity,
+    );
 
-    newUser.join_date = new Date();
-    newUser.last_login = new Date();
-    newUser.last_activity = new Date();
+    if (!newUser) {
+        const r = AuthResponseFactory()
+            .setStatus(500)
+            .setSuccess(false)
+            .setMessage('Error creating user');
 
-    // Add user to the list
-    users.push(newUser);
+        res.status(500).send(r);
+        return;
+    }
 
-    // Send response
     res.status(200).send(
         AuthResponseFactory()
             .setStatus(200)
