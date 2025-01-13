@@ -9,7 +9,7 @@
         "dev": "cp envs/.env.dev .env && nodemon index.ts",
         "start": "cp envs/.env.prod .env && tsc && node build/index.js",
         "build": "tsc",
-        "test": "mocha --config .mocharc.json",
+        "test": "cp envs/.env.test .env && mocha --config .mocharc.json",
         "docker:db:up": "docker compose -f docker/docker-compose.only.db.yml up -d",
         "docker:db:stop": "docker compose -f docker/docker-compose.only.db.yml stop",
         "docker:dev": "docker compose -f docker/docker-compose.dev.yml up --build -d",
