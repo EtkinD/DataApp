@@ -6,7 +6,7 @@ type RandUserEntity = UserEntity & { originalPassword: string };
 
 export function randomUserEntity(): RandUserEntity {
     const data: RandUserEntity = {
-        id: Math.floor(Math.random() * 10000),
+        id: Math.floor(Math.random() * 10000) + 1,
         name: `${randomWord()}`,
         last_name: `${randomWord()}`,
         originalPassword: `${randomWord(8, 16)}`,
