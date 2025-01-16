@@ -1,5 +1,15 @@
-import { UserEntity } from './user';
-import { UserPersonalEntity } from './user_personal';
-import { UserProfileEntity } from './user_profile';
+import {
+    UserEntity,
+    UserPersonalEntity,
+    UserProfileEntity,
+    UserRole,
+    UserStatus,
+} from './schemas/userdata';
 
-export { UserEntity, UserPersonalEntity, UserProfileEntity };
+export {
+    UserEntity,
+    UserPersonalEntity,
+    UserProfileEntity,
+    UserRole,
+    UserStatus,
+};
