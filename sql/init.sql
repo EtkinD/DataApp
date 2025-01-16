@@ -2,13 +2,13 @@
 \c data_app
 
 -- Initialize the db schema
-\i /docker-entrypoint-initdb.d/schemas.sql
+\ir schemas.sql
 
 -- Initialize the userdata tables & types
 -- Types
-\i /docker-entrypoint-initdb.d/schemas/userdata/user_roles.sql
-\i /docker-entrypoint-initdb.d/schemas/userdata/user_status.sql
+\ir schemas/userdata/user_roles.sql
+\ir schemas/userdata/user_status.sql
 -- Tables
-\i /docker-entrypoint-initdb.d/schemas/userdata/users.sql
-\i /docker-entrypoint-initdb.d/schemas/userdata/userprofiles.sql
-\i /docker-entrypoint-initdb.d/schemas/userdata/userpersonals.sql
+\ir schemas/userdata/users.sql
+\ir schemas/userdata/userprofiles.sql
+\ir schemas/userdata/userpersonals.sql
