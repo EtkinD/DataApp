@@ -15,9 +15,9 @@ function randomUserTest() {
                 assert.isString(user.password);
                 assert.isTrue(compare(user.originalPassword, user.password));
                 assert.isString(user.email);
-                assert.instanceOf(user.join_date, Date);
-                assert.instanceOf(user.last_login, Date);
-                assert.instanceOf(user.last_activity, Date);
+                assert.instanceOf(user.joined_at, Date);
+                assert.instanceOf(user.last_login_at, Date);
+                assert.instanceOf(user.last_activity_at, Date);
                 assert.isUndefined(user.personal_id);
                 assert.isUndefined(user.profile_id);
             }

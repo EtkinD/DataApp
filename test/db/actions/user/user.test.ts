@@ -39,17 +39,17 @@ function userEntityTests() {
                 assert.isString(user.password, 'password is not a string');
                 assert.isString(user.email, 'email is not a string');
                 assert.instanceOf(
-                    user.join_date,
+                    user.joined_at,
                     Date,
                     'joinDate is not a Date',
                 );
                 assert.instanceOf(
-                    user.last_login,
+                    user.last_login_at,
                     Date,
                     'lastLogin is not a Date',
                 );
                 assert.instanceOf(
-                    user.last_activity,
+                    user.last_activity_at,
                     Date,
                     'lastActivity is not a Date',
                 );
@@ -88,7 +88,7 @@ function userEntityTests() {
 
             // TODO: Querying here is not the best approach. It would be better to use the userActions to delete the users. Move this to the userActions test later.
             await dbClient?.query(
-                `DELETE FROM users WHERE id IN (${ids.join(',')})`,
+                `DELETE FROM userdata.users WHERE id IN (${ids.join(',')})`,
             );
         });
     });

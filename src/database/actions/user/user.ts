@@ -1,5 +1,5 @@
 import { dbClient } from '../..';
-import { UserEntity } from '../../../types/db/user';
+import { UserEntity } from '../../../types/db';
 
 // ========== CRUD ==========
 // ===== Create =====
@@ -8,7 +8,7 @@ export const createUser = async (
 ): Promise<UserEntity | null> => {
     const { username, name, last_name, email, password } = user;
     const query = `
-        INSERT INTO users (username, name, last_name, email, password)
+        INSERT INTO userdata.users (username, name, last_name, email, password)
         VALUES ($1, $2, $3, $4, $5)
         RETURNING *;
     `;
@@ -28,7 +28,7 @@ export const createUser = async (
 // ===== Read =====
 export const getUserById = async (id: number): Promise<UserEntity | null> => {
     const query = `
-        SELECT * FROM users
+        SELECT * FROM userdata.users
         WHERE id = $1;
     `;
     const values = [id];
@@ -48,7 +48,7 @@ export const getUserByEmail = async (
     email: string,
 ): Promise<UserEntity | null> => {
     const query = `
-        SELECT * FROM users
+        SELECT * FROM userdata.users
         WHERE email = $1;
     `;
     const values = [email];
@@ -68,7 +68,7 @@ export const getUserByUsername = async (
     username: string,
 ): Promise<UserEntity | null> => {
     const query = `
-        SELECT * FROM users
+        SELECT * FROM userdata.users
         WHERE username = $1;
     `;
     const values = [username];
@@ -85,7 +85,7 @@ export const getUserByUsername = async (
 };
 
 export const listUsers = async (): Promise<Array<UserEntity>> => {
-    const query = `SELECT * FROM users;`;
+    const query = `SELECT * FROM userdata.users;`;
 
     if (dbClient === undefined) {
         console.error('Database client is not defined');
@@ -109,16 +109,16 @@ export const updateUser = async (
         user.last_name,
         user.email,
         user.password,
-        user.join_date,
-        user.last_activity,
-        user.last_login,
+        user.joined_at,
+        user.last_activity_at,
+        user.last_login_at,
         user.personal_id,
         user.profile_id,
-        user.id,
+        id,
     ];
     const query = `
-        UPDATE users
-        SET username = $1, name = $2, last_name = $3, email = $4, password = $5, join_date = $6, last_activity = $7, last_login = $8, personal_id = $9, profile_id = $10
+        UPDATE userdata.users
+        SET username = $1, name = $2, last_name = $3, email = $4, password = $5, joined_at = $6, last_activity_at = $7, last_login_at = $8, personal_id = $9, profile_id = $10
         WHERE id = $11
         RETURNING *;
     `;

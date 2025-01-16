@@ -10,9 +10,9 @@ export function randomUserEntity(): RandUserEntity {
         name: `${randomWord()}`,
         last_name: `${randomWord()}`,
         originalPassword: `${randomWord(8, 16)}`,
-        join_date: new Date(),
-        last_login: new Date(),
-        last_activity: new Date(),
+        joined_at: new Date(),
+        last_login_at: new Date(),
+        last_activity_at: new Date(),
         personal_id: undefined,
         profile_id: undefined,
     } as RandUserEntity;

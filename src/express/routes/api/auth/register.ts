@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { dbActions } from '../../../../database';
-import { UserEntity } from '../../../../types/db/user';
+import { UserEntity } from '../../../../types/db';
 import { RegisterRequest } from '../../../../types/request/auth';
 import { AuthResponseFactory } from '../../../../types/response/auth';
 import { hash } from '../../../../util/hashing';

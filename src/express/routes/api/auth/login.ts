@@ -43,8 +43,8 @@ async function login(req: Request, res: Response): Promise<void> {
     }
 
     // Update user info
-    user.last_login = new Date();
-    user.last_activity = new Date();
+    user.last_login_at = new Date();
+    user.last_activity_at = new Date();
 
     dbActions.userActions.user.updateUser(user.id, user);
 
